@@ -16,6 +16,4 @@ func main() {
 
 	fmt.Println(float64(i) + j) //任何类型的隐式类型转换都会造成编译报错
 
-	fmt.Println("Test Commit")
-
 }
