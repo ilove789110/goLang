@@ -26,8 +26,8 @@ func main() {
 			digit := stringOfDigits[column] - '0'
 			/*Go中字符串编码为UTF-8，字符'0'对应的是48，字符'1'对应的是49。
 			一个字符是与Go的整型类型兼容的整型数，而且Go语言的数值类型会适应上下文，跟Go语言强类型且不支持隐式类型不冲突*/
-			if 0 <= digit && digit <= 9 {
-				line += bigDigits[digit][row] + " "
+			if 0 <= digit && digit <= 9 { /*此处0和9被认定为byte类型*/
+				line += bigDigits[digit][row] + " " //Go中string类型是不可变的，但是+=和+是支持的，主要是易于使用。实质上是暗地里将字符串替换了
 			} else {
 				log.Fatal("invalid whole number")
 			}
