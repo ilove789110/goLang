@@ -21,3 +21,7 @@ func (stack Stack) IsEmpty bool {
 
 	return true
 }
+
+func (stack *Stack) Push(x interface{}) {
+	*stack =append(*stack,x)
+}
