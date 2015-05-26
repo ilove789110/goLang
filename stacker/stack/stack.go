@@ -22,6 +22,8 @@ func (stack Stack) IsEmpty bool {
 	return true
 }
 
+/* go方法的参数是引用传参，相当于复制一个新的。
+在方法内修改，不影响原值。如果需要修改原值，需要使用指针类型例如 *Stack */
 func (stack *Stack) Push(x interface{}) {
 	*stack =append(*stack,x)
 }
