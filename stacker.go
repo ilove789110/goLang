@@ -12,17 +12,24 @@ func main() {
 	hayStack.Push([]string{"pin", "clip", "needle"})
 	hayStack.Push(81.52)
 
-	for {
+	fmt.Println(hayStack.Len())
+	item, err := hayStack.Pop()
 
-		fmt.Println(hayStack.Len())
-		item, err := hayStack.Pop()
-		if err != nil {
-			break
-		}
-		fmt.Println(item)
+	if err != nil {
+		return
 	}
+	fmt.Println(item)
+	fmt.Println(hayStack.Len())
+
+	// for {
+
+	// }
 	fmt.Println(hayStack)
 
 	fmt.Println(hayStack.Len())
+
+	hayStack1 := hayStack[:len(hayStack)-1]
+
+	fmt.Println(hayStack1)
 
 }

@@ -38,13 +38,13 @@ func (stack Stack) Top() (interface{}, error) {
 
 func (stack *Stack) Pop() (interface{}, error) {
 	theStack := *stack
-	if theStack.Len() == 0 {
+	if len(theStack) == 0 {
 		return nil, errors.New("can't pop en empty stack")
 	}
 
-	x := theStack[theStack.Len()-1]
+	x := theStack[len(theStack)-1]
 
-	theStack = theStack[:theStack.Len()-1] /*theStack[first:end] 省略first,默认0；省略end,默认len().新获取的切片包含原切片中从first到end之间的所有元素，包含first元素，不包含end元素*/
+	*stack = theStack[:len(theStack)-1] /*theStack[first:end] 省略first,默认0；省略end,默认len().新获取的切片包含原切片中从first到end之间的所有元素，包含first元素，不包含end元素*/
 
 	return x, nil
 }
