@@ -1,4 +1,4 @@
-package goLang
+package main
 
 import (
 	"fmt"
@@ -13,10 +13,16 @@ func main() {
 	hayStack.Push(81.52)
 
 	for {
+
+		fmt.Println(hayStack.Len())
 		item, err := hayStack.Pop()
 		if err != nil {
 			break
 		}
 		fmt.Println(item)
 	}
+	fmt.Println(hayStack)
+
+	fmt.Println(hayStack.Len())
+
 }
