@@ -1,4 +1,4 @@
-package americanise
+package main
 
 import (
 	"bufio" /*提供带缓冲的I/O处理功能*/
