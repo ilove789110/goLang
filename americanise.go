@@ -78,6 +78,16 @@ func americanize(inFile io.Reader, outFile io.Writer) (err error) {
 	return nil
 }
 
+func makeReplaceFunc(file string) (func(string) string, error) {
+	rawBytes, err := ioutil.ReadFile(file)
+	if err != nil {
+		return nil, err
+	}
+
+	text := string(rawBytes)
+
+}
+
 func main() {
 	inFilename, outFilename, err := filenamesFromCommandLine()
 
