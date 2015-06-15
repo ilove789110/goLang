@@ -1,6 +1,6 @@
 // variables.go
 
-package goLang
+package main
 
 // import "fmt"
 
