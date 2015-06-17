@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp" /*正则表达*/
-	"stringns"
+	"strings"
 )
 
 func filenameFromCommandLine() (inFilename, outFilename string, err error) {
@@ -79,17 +79,37 @@ func americanize(inFile io.Reader, outFile io.Writer) (err error) {
 }
 
 func makeReplaceFunc(file string) (func(string) string, error) {
-	rawBytes, err := ioutil.ReadFile(file)
+	rawBytes, err := ioutil.ReadFile(file) /*ioutil.ReadFile直接读取整个文件的内容,不会通过返回err==EOF标识读到文件的结尾*/
 	if err != nil {
 		return nil, err
 	}
 
 	text := string(rawBytes)
 
+	usForBritish := make(map[string]string) /*make函数创建指向特定类型的引用（这里是指向map这种内置集合类型的引用），
+	该引用可以传递。并且在被引用的值上做任何改变对于任何访问该值的代码都是可见的*/
+	lines := strings.Split(text, "\n")
+
+	for _, line := range lines {
+		fields := strings.Fields(line)
+
+		if len(fields) == 2 {
+			usForBritish[fields[0]] = fields[1]
+		}
+
+	}
+
+	return func(word string) string { /*Go支持闭包，这里的匿名函数就是作为一个闭包可以捕获创建该函数的函数的某些状态（usForBritish）*/
+		if usWord, found := usForBritish[word]; found { /*Go语言提供了一种语法，获取映射的元素时，左边可以放两个变量，一个接受元素，一个布尔类型（返回元素是否在映射中）*/
+			return usWord
+		}
+		return word
+
+	}, nil
 }
 
 func main() {
-	inFilename, outFilename, err := filenamesFromCommandLine()
+	inFilename, outFilename, err := filenameFromCommandLine()
 
 	if err != nil {
 		fmt.Println(err)
