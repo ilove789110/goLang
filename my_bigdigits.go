@@ -14,12 +14,20 @@ var bigDigits = [][]string{
 }
 
 func main() {
-	if len(os.Args) == 1 {
-		fmt.Printf("usage: %s <whole-number>\n", filepath.Base(os.Args[0]))
+
+	if len(os.Args) == 1 || (len(os.Args) > 1 && (os.Args[1] == "-h" || os.Args[1] == "--help")) {
+		fmt.Printf("usage: %s [-b|--bar] <whole-number>\n", filepath.Base(os.Args[0]))
+		fmt.Print("-b -bar draw an underbar and an overbar")
 		os.Exit(1)
 	}
 
-	stringOfDigits := os.Args[1]
+	lenOSArgs := len(os.Args)
+
+	if lenOSArgs == 3 && (os.Args[1] == "-b" || os.Args[1] == "--bar") { /*draw an overbar*/
+		fmt.Println("*************************************************************************")
+	}
+
+	stringOfDigits := os.Args[lenOSArgs-1]
 	for row := range bigDigits[0] {
 		line := ""
 		for column := range stringOfDigits {
@@ -33,5 +41,9 @@ func main() {
 			}
 		}
 		fmt.Println(line)
+	}
+
+	if lenOSArgs == 3 && (os.Args[1] == "-b" || os.Args[1] == "--bar") { /*draw an underbar*/
+		fmt.Println("*************************************************************************")
 	}
 }
