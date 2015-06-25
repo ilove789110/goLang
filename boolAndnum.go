@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"goLang/bitflag"
 )
 
 const (
@@ -16,9 +17,9 @@ const (
 type BitFlag int
 
 const (
-	Active  BitFlag = 1 << iota
-	Send            //隐式设置成BitFlag=1<<iota 1<<1=2
-	Receive         //隐式设置成BitFlag=1<<iota 1<<2=2
+	Active  bitflag.BitFlag = 1 << iota
+	Send                    //隐式设置成BitFlag=1<<iota 1<<1=2
+	Receive                 //隐式设置成BitFlag=1<<iota 1<<2=2
 )
 
 func main() {
