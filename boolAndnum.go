@@ -32,4 +32,7 @@ func main() {
 	fmt.Println(Active)
 	fmt.Println(Send)
 	fmt.Println(Receive)
+
+	flag := Active | Receive
+	fmt.Println(flag)
 }
